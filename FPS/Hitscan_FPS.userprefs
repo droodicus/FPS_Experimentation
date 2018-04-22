@@ -1,0 +1,17 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Jetpack_Character\Projectile_Shoot.cs">
+    <Files>
+      <File FileName="Assets\Scripts\General Scripts\Character_Select.cs" Line="1" Column="1" />
+      <File FileName="..\..\Grapple_Test\Grapple\Assets\Character_Selection.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\General Scripts\Character_Set.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player_Movement.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Grapple_Character\Hitscan_Shoot.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Jetpack_Character\Projectile_Shoot.cs" Line="21" Column="40" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
