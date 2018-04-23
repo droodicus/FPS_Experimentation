@@ -9,11 +9,13 @@ public class Grapple_Hook : MonoBehaviour {
 
 	Rigidbody rb;
 
-	// Use this for initialization
+	//Initialization
 	void Start () {
 		rb = this.gameObject.GetComponent<Rigidbody> ();
 	}
 
+
+	//Simply stops traveling and calls the casting player's Pull() function once it collides with terrain
 	void OnCollisionEnter(Collision col)	{
 		if (col.gameObject.tag == "Scenary") {
 			Debug.Log ("HIT SCENARY");
