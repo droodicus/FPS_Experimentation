@@ -12,10 +12,12 @@ public class Hitscan_Shoot : MonoBehaviour {
 	public GameObject camera;
 
 	Vector3 hole_pos;
-	public float hole_buffer = 0.5f;
+	float hole_buffer = 0.08f;
 
 	Ray ray;
 	RaycastHit hit;
+
+	int bullet_index;
 
 	AudioSource gunshot;
 
@@ -42,8 +44,10 @@ public class Hitscan_Shoot : MonoBehaviour {
 			//OPTIONAL: if the object DOESN'T have a "Health" component, create a "bullet impact" object at the point of impact.
 			else {
 
-				int bullet_index = Random.Range (0, Bullet_Holes.Length);
-				Instantiate (Bullet_Holes[bullet_index], hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
+
+				bullet_index = Random.Range (0, Bullet_Holes.Length);
+				hole_pos = hit.point - (hole_buffer * hit.normal);
+				Instantiate (Bullet_Holes[bullet_index], hole_pos, Quaternion.FromToRotation(Vector3.up, hit.normal));
 			}
 		}
 	}
