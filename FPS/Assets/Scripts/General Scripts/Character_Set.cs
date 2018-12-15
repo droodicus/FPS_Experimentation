@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Character_Set : MonoBehaviour {
-	public GameObject[] characterList;
-
-	public Vector3 current_location;
-	public Quaternion current_rotation;
 
 	public int current_index = 0;
+
+	public GameObject p;
+	Component[] projectile_shoots;
+
 
 	// Use this for initialization
 	void Start () {
@@ -16,34 +16,38 @@ public class Character_Set : MonoBehaviour {
 	}
 
 	public void SetCharacter(int i)	{
-		for (int j = 0; j < characterList.Length; j++) {
-			characterList [j].SetActive (false);
-		}
+		current_index = i;
+		UpdateCharacter ();
+	}
 
-		characterList [i].SetActive (true);
+	void UpdateCharacter()	{
+		p = GameObject.Find ("Player");
+		projectile_shoots = p.GetComponents (typeof(Projectile_Shoot));
+
+
+		//Pharah
+		if (current_index == 0) {
+			p.GetComponent<Jetpack> ().enabled = true;
+			foreach (Projectile_Shoot ps in projectile_shoots) {
+				ps.enabled = true;
+			}
+			p.GetComponent<Hitscan_Shoot> ().enabled = false;
+			p.GetComponent<Shoot_Grapple> ().enabled = false;
+		} 
+		//Widowmaker
+		else if (current_index == 1) {
+			p.GetComponent<Jetpack> ().enabled = false;
+			foreach (Projectile_Shoot ps in projectile_shoots) {
+				ps.enabled = false;
+			}
+			p.GetComponent<Hitscan_Shoot> ().enabled = true;
+			p.GetComponent<Shoot_Grapple> ().enabled = true;
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.U)) {
-			if (current_index == 1) {
-				current_location = characterList [1].transform.position;
-				current_rotation = characterList [1].transform.rotation;
-				characterList [0].SetActive (true);
-				characterList[1].SetActive(false);
-				characterList [0].transform.position = current_location;
-				characterList [0].transform.rotation = current_rotation;
-				current_index = 0;
-			} 
-			else {
-				current_location = characterList [0].transform.position;
-				current_rotation = characterList [0].transform.rotation;
-				characterList [1].SetActive (true);
-				characterList[0].SetActive(false);
-				characterList [1].transform.position = current_location;
-				characterList [1].transform.rotation = current_rotation;
-				current_index++;
-			}
-		}
+
+
 	}
 }

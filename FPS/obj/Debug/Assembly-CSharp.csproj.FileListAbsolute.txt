@@ -31,3 +31,5 @@ C:\Users\Karl Olsen\Desktop\FPS_Experimentation\Hitscan_FPS\Temp\bin\Debug\Unity
 C:\Users\Karl Olsen\Desktop\FPS_Experimentation\Hitscan_FPS\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 C:\Users\Karl Olsen\Desktop\FPS_Experimentation\Hitscan_FPS\obj\Debug\Assembly-CSharp.dll
 C:\Users\Karl Olsen\Desktop\FPS_Experimentation\Hitscan_FPS\obj\Debug\Assembly-CSharp.pdb
+C:\Users\Karl Olsen\Desktop\FPS_Experimentation\FPS\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
+C:\Users\Karl Olsen\Desktop\FPS_Experimentation\FPS\obj\Debug\Assembly-CSharp.dll

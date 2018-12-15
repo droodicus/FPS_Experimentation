@@ -1,14 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class Character_Select : MonoBehaviour {
 	public GameObject[] characterList;
+	public GameObject Character_Manager;
+
+	public Scene main_scene;
+
 	public int current_index;
 
 
 	// Use this for initialization
 	void Start () {
+		DontDestroyOnLoad(this.gameObject);
+
 		current_index = 0;
 		characterList = new GameObject[transform.childCount];
 
@@ -54,13 +62,24 @@ public class Character_Select : MonoBehaviour {
 	}
 
 
-
 	public void Confirm()	{
-		Debug.Log ("CONFIRMED");
+		Debug.Log ("CONFIRMED: " + current_index);
 		//given the current index
 
+		SceneManager.LoadScene("main");
+	}
 
-		//load the next level playing as the character corresponding to the "current_index"
+	void OnEnable()	{
+		SceneManager.sceneLoaded += OnSceneLoaded;
+	}
+
+
+	void OnSceneLoaded(Scene main_scene, LoadSceneMode mode)	{
+		Debug.Log ("ASDFASDFASDFZXCVZXCVZXCV");
+		if (main_scene.name == "main") { 
+			Character_Manager = GameObject.Find ("Character_Manager");
+			Character_Manager.GetComponent<Character_Set> ().SetCharacter (current_index);
+		}
 	}
 
 	// Update is called once per frame
