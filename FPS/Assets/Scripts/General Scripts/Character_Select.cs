@@ -75,8 +75,8 @@ public class Character_Select : MonoBehaviour {
 
 
 	void OnSceneLoaded(Scene main_scene, LoadSceneMode mode)	{
-		Debug.Log ("ASDFASDFASDFZXCVZXCVZXCV");
 		if (main_scene.name == "main") { 
+			Debug.Log ("WEW LADS");
 			Character_Manager = GameObject.Find ("Character_Manager");
 			Character_Manager.GetComponent<Character_Set> ().SetCharacter (current_index);
 		}

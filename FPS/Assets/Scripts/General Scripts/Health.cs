@@ -7,7 +7,6 @@ public class Health : MonoBehaviour {
 	public float max_hp = 100;
 	public float current_hp;
 
-
 	GameObject HP_obj;
 	public Image HP_Bar;
 	public float uptime = 5;

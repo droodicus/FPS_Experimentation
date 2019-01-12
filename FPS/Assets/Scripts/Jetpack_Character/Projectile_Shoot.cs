@@ -4,6 +4,7 @@ using System.Collections;
 public class Projectile_Shoot : MonoBehaviour {
 
 	public GameObject camera;
+	public Mouse_Look cam_script;
 
     public GameObject player_bullet;
     public float bullet_speed;
@@ -13,11 +14,13 @@ public class Projectile_Shoot : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		camera = GameObject.Find ("Main Camera");
+		cam_script = camera.GetComponent<Mouse_Look> ();
 	}
 
     void Shoot()
     {
-		GameObject proj = Instantiate(player_bullet, transform.position + (transform.forward), Quaternion.Euler(camera.transform.forward)) as GameObject;
+		Vector3 rot = new Vector3 (cam_script.xRot, cam_script.yRot, 0);
+		GameObject proj = Instantiate(player_bullet, transform.position + (transform.forward), Quaternion.Euler(rot)) as GameObject;
 		Debug.Log (camera.transform.forward);
 		proj.GetComponent<Rigidbody>().AddForce(camera.transform.forward * bullet_speed, ForceMode.Impulse);
     }

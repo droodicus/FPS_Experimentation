@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Shoot_Grapple : MonoBehaviour {
@@ -26,12 +27,20 @@ public class Shoot_Grapple : MonoBehaviour {
 	//Character is pulled to the grappling hook using steps (based on pull_speed)
 	private float step;
 
+	//Used to display remaining cooldown on shift ability on the UI
+	float time_casted;
+	float remaining_CD = 0;
+
+
 	private Rigidbody rb;
+
+	public Image CD_Bar;
 
 	//Initialization
 	void Start () {
 		camera = GameObject.Find ("Main Camera");
 		rb = this.gameObject.GetComponent<Rigidbody> ();
+		CD_Bar = GameObject.Find ("Shift_Icon_CD").GetComponent<Image> ();
 	}
 
 	//Basic cooldown reset function
@@ -44,17 +53,20 @@ public class Shoot_Grapple : MonoBehaviour {
 		//Shoot grapple using G
 		if (Input.GetKeyDown (KeyCode.G)) {
 			if (on_CD == false) {
+				Debug.Log ("SHOOTING GRAPPLE");
+				if (hook_fired != null)
+					Destroy (hook_fired);
 				hook_fired = Instantiate (grapple_hook, transform.position + (transform.forward), Quaternion.Euler (camera.transform.forward)) as GameObject;
 				hook_fired.GetComponent<Grapple_Hook> ().SetCaster (this.gameObject);
 				hook_fired.GetComponent<Rigidbody>().AddForce(camera.transform.forward * speed, ForceMode.Impulse);
-				Debug.Log ("SHOOTING GRAPPLE");
 				on_CD = true;
+				time_casted = Time.time;
 
 				//Reset the cooldown of the grappling hook after a delay (based on CD)
 				Invoke ("resetCD", CD);
 			} 
 			else
-				Debug.Log ("GRAPPLE STILL ON CD");
+				Debug.Log ("REMAINING CD: " + remaining_CD);
 		}
 
 		//Once the Pull() function is called, move the character towards the grappling hook until it reaches a minimum distance (in this case 3)
@@ -70,6 +82,11 @@ public class Shoot_Grapple : MonoBehaviour {
 				rb.useGravity = true;
 				Destroy (hook_fired);
 			}
+		}
+
+		if (on_CD == true) {
+			remaining_CD = CD - (Time.time - time_casted);
+			CD_Bar.fillAmount = remaining_CD / CD;
 		}
 
 	}
